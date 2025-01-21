@@ -50,36 +50,19 @@ public class Game
             if (roll % 2 != 0)
             {
                 CurrentPlayer.IsGettingOutOfPenaltyBox = true;
-
                 Console.WriteLine(CurrentPlayer.Name + " is getting out of the penalty box");
-                CurrentPlayer.Place = CurrentPlayer.Place + roll;
-                if (CurrentPlayer.Place > 11)
-                    CurrentPlayer.Place = CurrentPlayer.Place - 12;
-
-                Console.WriteLine(CurrentPlayer.Name
-                                  + "'s new location is "
-                                  + CurrentPlayer.Place);
-
+                MovePlayer(CurrentPlayer, roll);
                 askQuestion(CurrentPlayer);
             }
             else
             {
-                Console.WriteLine(CurrentPlayer.Name + " is not getting out of the penalty box");
                 CurrentPlayer.IsGettingOutOfPenaltyBox = false;
+                Console.WriteLine(CurrentPlayer.Name + " is not getting out of the penalty box");
             }
-
         }
         else
         {
-
-            CurrentPlayer.Place = CurrentPlayer.Place + roll;
-            if (CurrentPlayer.Place > 11)
-                CurrentPlayer.Place = CurrentPlayer.Place - 12;
-
-            Console.WriteLine(CurrentPlayer.Name
-                              + "'s new location is "
-                              + CurrentPlayer.Place);
-
+            MovePlayer(CurrentPlayer, roll);
             askQuestion(CurrentPlayer);
         }
 
@@ -91,6 +74,12 @@ public class Game
         Console.WriteLine($"The category is {questionType}");
         string question = _questionService.TakeQuestion(questionType);
         Console.WriteLine(question);
+    }
+
+    private static void MovePlayer(Player player, int roll)
+    {
+        player.Place = (player.Place + roll) % 12;
+        Console.WriteLine($"{player.Name}'s new location is {player.Place}");
     }
 
     private static QuestionType GetQuestionType(int place) =>
@@ -108,40 +97,22 @@ public class Game
         {
             if (CurrentPlayer.IsGettingOutOfPenaltyBox)
             {
-                Console.WriteLine("Answer was correct!!!!");
-                CurrentPlayer.Purse++;
-                Console.WriteLine(CurrentPlayer.Name
-                                  + " now has "
-                                  + CurrentPlayer.Purse
-                                  + " Gold Coins.");
-
+                CorrectAnswer(CurrentPlayer, "correct");
                 bool winner = didPlayerWin();
-                currentPlayer++;
-                if (currentPlayer == _players.Count) currentPlayer = 0;
-
+                NextPlayer();
                 return winner;
             }
             else
             {
-                currentPlayer++;
-                if (currentPlayer == _players.Count) currentPlayer = 0;
+                NextPlayer();
                 return true;
             }
         }
         else
         {
-            Console.WriteLine("Answer was corrent!!!!");
-            CurrentPlayer.Purse++;
-            Console.WriteLine(CurrentPlayer.Name
-                              + " now has "
-                              + CurrentPlayer.Purse
-                              + " Gold Coins.");
-
+            CorrectAnswer(CurrentPlayer, "corrent");
             bool winner = didPlayerWin();
-            currentPlayer++;
-            if (currentPlayer == _players.Count)
-                currentPlayer = 0;
-
+            NextPlayer();
             return winner;
         }
     }
@@ -152,12 +123,21 @@ public class Game
         Console.WriteLine(CurrentPlayer.Name + " was sent to the penalty box");
         CurrentPlayer.InPenaltyBox = true;
 
-        currentPlayer++;
-        if (currentPlayer == _players.Count)
-            currentPlayer = 0;
+        NextPlayer();
         return true;
     }
 
+    private static void CorrectAnswer(Player player, string msg)
+    {
+        Console.WriteLine($"Answer was {msg}!!!!");
+        player.Purse++;
+        Console.WriteLine($"{player.Name} now has {player.Purse} Gold Coins.");
+    }
+
+    private void NextPlayer()
+    {
+        currentPlayer = (currentPlayer + 1) % _players.Count;
+    }
 
     private bool didPlayerWin()
     {
