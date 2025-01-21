@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trivia", "Trivia\Trivia.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose", "GildedRose\GildedRose.csproj", "{EC28C25C-1D2B-4C4F-A0D2-C37F6A88AF3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trivia.TestProject", "Trivia.TestProject\Trivia.TestProject.csproj", "{1F5895B1-780C-4A96-AEB4-40037A2BD908}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EC28C25C-1D2B-4C4F-A0D2-C37F6A88AF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC28C25C-1D2B-4C4F-A0D2-C37F6A88AF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC28C25C-1D2B-4C4F-A0D2-C37F6A88AF3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F5895B1-780C-4A96-AEB4-40037A2BD908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F5895B1-780C-4A96-AEB4-40037A2BD908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F5895B1-780C-4A96-AEB4-40037A2BD908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F5895B1-780C-4A96-AEB4-40037A2BD908}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
