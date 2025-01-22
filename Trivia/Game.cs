@@ -42,30 +42,24 @@ public class Game
 
     public void roll(int roll)
     {
-        Console.WriteLine(CurrentPlayer.Name + " is the current player");
+        Player player = CurrentPlayer;
+        Console.WriteLine(player.Name + " is the current player");
         Console.WriteLine("They have rolled a " + roll);
 
-        if (CurrentPlayer.InPenaltyBox)
+        bool isOutOfPenaltyBox = !player.InPenaltyBox || TryReleasePlayer(player, roll);
+        if (isOutOfPenaltyBox)
         {
-            if (roll % 2 != 0)
-            {
-                CurrentPlayer.IsGettingOutOfPenaltyBox = true;
-                Console.WriteLine(CurrentPlayer.Name + " is getting out of the penalty box");
-                MovePlayer(CurrentPlayer, roll);
-                askQuestion(CurrentPlayer);
-            }
-            else
-            {
-                CurrentPlayer.IsGettingOutOfPenaltyBox = false;
-                Console.WriteLine(CurrentPlayer.Name + " is not getting out of the penalty box");
-            }
+            MovePlayer(player, roll);
+            askQuestion(player);
         }
-        else
-        {
-            MovePlayer(CurrentPlayer, roll);
-            askQuestion(CurrentPlayer);
-        }
+    }
 
+    private static bool TryReleasePlayer(Player player, int roll)
+    {
+        bool canRelease = roll % 2 != 0;
+        Console.WriteLine($"{player.Name} {(canRelease ? "is" : "is not")} getting out of the penalty box");
+        player.IsGettingOutOfPenaltyBox = canRelease;
+        return canRelease;
     }
 
     private void askQuestion(Player player)
