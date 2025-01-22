@@ -87,38 +87,36 @@ public class Game
 
     public bool wasCorrectlyAnswered()
     {
-        if (CurrentPlayer.InPenaltyBox)
+        Player player = CurrentPlayer;
+        if (player.InPenaltyBox)
         {
-            if (CurrentPlayer.IsGettingOutOfPenaltyBox)
+            if (player.IsGettingOutOfPenaltyBox)
             {
-                CorrectAnswer(CurrentPlayer, "correct");
-                bool winner = didPlayerWin();
+                CorrectAnswer(player, "correct");
                 NextPlayer();
-                return winner;
+                return IsWinner(player);
             }
             else
             {
                 NextPlayer();
-                return true;
+                return false;
             }
         }
         else
         {
-            CorrectAnswer(CurrentPlayer, "corrent");
-            bool winner = didPlayerWin();
+            CorrectAnswer(player, "corrent");
             NextPlayer();
-            return winner;
+            return IsWinner(player);
         }
     }
 
-    public bool wrongAnswer()
+    public void wrongAnswer()
     {
         Console.WriteLine("Question was incorrectly answered");
         Console.WriteLine(CurrentPlayer.Name + " was sent to the penalty box");
         CurrentPlayer.InPenaltyBox = true;
 
         NextPlayer();
-        return true;
     }
 
     private static void CorrectAnswer(Player player, string msg)
@@ -133,8 +131,5 @@ public class Game
         currentPlayer = (currentPlayer + 1) % _players.Count;
     }
 
-    private bool didPlayerWin()
-    {
-        return !(CurrentPlayer.Purse == 6);
-    }
+    private static bool IsWinner(Player player) => player.Purse == 6;
 }

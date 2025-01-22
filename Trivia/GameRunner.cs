@@ -8,7 +8,7 @@ namespace Trivia;
 public class GameRunner
 {
 
-    private static bool notAWinner;
+    private static bool hasWinner;
 
     public static void Main(String[] args)
     {
@@ -25,14 +25,10 @@ public class GameRunner
             aGame.roll(rand.Next(5) + 1);
 
             if (rand.Next(9) == 7)
-            {
-                notAWinner = aGame.wrongAnswer();
-            }
+                aGame.wrongAnswer();
             else
-            {
-                notAWinner = aGame.wasCorrectlyAnswered();
-            }
-        } while (notAWinner);
+                hasWinner = aGame.wasCorrectlyAnswered();
+        } while (!hasWinner);
     }
 }
 
