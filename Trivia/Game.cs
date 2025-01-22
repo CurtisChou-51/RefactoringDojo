@@ -88,26 +88,13 @@ public class Game
     public bool wasCorrectlyAnswered()
     {
         Player player = CurrentPlayer;
-        if (player.InPenaltyBox)
+        NextPlayer();
+        return player switch
         {
-            if (player.IsGettingOutOfPenaltyBox)
-            {
-                CorrectAnswer(player, "correct");
-                NextPlayer();
-                return IsWinner(player);
-            }
-            else
-            {
-                NextPlayer();
-                return false;
-            }
-        }
-        else
-        {
-            CorrectAnswer(player, "corrent");
-            NextPlayer();
-            return IsWinner(player);
-        }
+            { InPenaltyBox: false } => HandleCorrectAnswer(player, "corrent"),
+            { InPenaltyBox: true, IsGettingOutOfPenaltyBox: true } => HandleCorrectAnswer(player, "correct"),
+            { InPenaltyBox: true, IsGettingOutOfPenaltyBox: false } => false
+        };
     }
 
     public void wrongAnswer()
@@ -119,11 +106,12 @@ public class Game
         NextPlayer();
     }
 
-    private static void CorrectAnswer(Player player, string msg)
+    private static bool HandleCorrectAnswer(Player player, string msg)
     {
         Console.WriteLine($"Answer was {msg}!!!!");
         player.Purse++;
         Console.WriteLine($"{player.Name} now has {player.Purse} Gold Coins.");
+        return IsWinner(player);
     }
 
     private void NextPlayer()
