@@ -16,7 +16,11 @@
                 {
                     if (Items[i].Quality > 0)
                     {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                        if (Items[i].Name.Contains("Conjured"))
+                        {
+                            Items[i].Quality = Math.Max(Items[i].Quality - 2, 0);
+                        }
+                        else if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                         {
                             Items[i].Quality = Items[i].Quality - 1;
                         }
@@ -62,7 +66,11 @@
                         {
                             if (Items[i].Quality > 0)
                             {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                                if (Items[i].Name.Contains("Conjured"))
+                                {
+                                    Items[i].Quality = Math.Max(Items[i].Quality - 2, 0);
+                                }
+                                else if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                                 {
                                     Items[i].Quality = Items[i].Quality - 1;
                                 }
