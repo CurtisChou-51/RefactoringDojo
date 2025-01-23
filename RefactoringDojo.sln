@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose", "GildedRose\Gi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trivia.TestProject", "Trivia.TestProject\Trivia.TestProject.csproj", "{1F5895B1-780C-4A96-AEB4-40037A2BD908}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose.TestProject", "GildedRose.TestProject\GildedRose.TestProject.csproj", "{9C0E3F28-F929-40D2-AD5E-EB53BC7E73F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1F5895B1-780C-4A96-AEB4-40037A2BD908}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F5895B1-780C-4A96-AEB4-40037A2BD908}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F5895B1-780C-4A96-AEB4-40037A2BD908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C0E3F28-F929-40D2-AD5E-EB53BC7E73F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C0E3F28-F929-40D2-AD5E-EB53BC7E73F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C0E3F28-F929-40D2-AD5E-EB53BC7E73F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C0E3F28-F929-40D2-AD5E-EB53BC7E73F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
